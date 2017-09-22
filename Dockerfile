@@ -17,7 +17,7 @@ FROM gcr.io/tensorflow/tensorflow:latest-devel
 
 RUN pip install --upgrade pip
 RUN apt-get update
-RUN apt-get install -y unzip python-dev python-pip zlib1g-dev libjpeg-dev libblas-dev
+RUN apt-get install -y unzip pkg-config python-dev python-pip zlib1g-dev libjpeg-dev libblas-dev
 RUN apt-get install -y protobuf-compiler python-pil python-lxml
 RUN apt-get install -y git wget
 RUN apt-get install -y liblapack-dev libatlas-base-dev libsnappy-dev libyaml-dev gfortran
@@ -29,9 +29,25 @@ RUN pip install pandas python-snappy scipy scikit-learn requests uritemplate
 RUN pip install --upgrade --force-reinstall https://storage.googleapis.com/cloud-ml/sdk/cloudml.latest.tar.gz
 RUN pip install jupyter
 
-
-RUN pip install jupyter
 RUN pip install matplotlib
+
+
+
+RUN apt-get install -y \ 
+    python-opencv \ 
+    libopencv-dev \ 
+    libav-tools  \ 
+    libjpeg-dev \ 
+    libpng-dev \ 
+    libtiff-dev \ 
+    libjasper-dev \ 
+    python-numpy \ 
+    python-pycurl \ 
+    python-opencv
+
+RUN pip install moviepy argparse multiprocessing
+
+
 RUN pip install --upgrade --force-reinstall https://storage.googleapis.com/cloud-ml/sdk/cloudml.latest.tar.gz
 #RUN curl https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/google-cloud-sdk-159.0.0-linux-x86_64.tar.gz | tar xvz
 #RUN ./google-cloud-sdk/install.sh -q
